@@ -11,7 +11,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    binding.pry
+    user = User.new
+    user.email = params[:email]
+    user.password = params[:password]
+
+    user.save!
+    render json: user, status: 201
+
   end
 
   # GET /resource/edit
